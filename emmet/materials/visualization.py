@@ -89,7 +89,9 @@ class VisualizationBuilder(MapBuilder):
 
     def calc(self, item):
 
-        struct_or_mol = MontyDecoder().process_decoded(item[self.projected_object_name])
+        struct_or_mol = MontyDecoder().process_decoded(
+            item[self.projected_object_name]
+        )
 
         # TODO: will combine these two functions into something more intuitive
 
