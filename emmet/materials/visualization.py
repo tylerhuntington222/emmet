@@ -87,8 +87,7 @@ class VisualizationBuilder(MapBuilder):
             **kwargs
         )
 
-    def calc(self, item):
-
+    def _calc_helper(self, item):
         struct_or_mol = MontyDecoder().process_decoded(
             item[self.projected_object_name]
         )
@@ -113,6 +112,13 @@ class VisualizationBuilder(MapBuilder):
             hide_incomplete_bonds=self.settings["hide_incomplete_bonds"],
         )
 
+        return graph, scene, legend
+
+
+    def calc(self, item):
+
+        graph, scene, legend = self._calc_helper(item)
+        
         return {
             "scene": scene.to_json(),
             "legend": legend,
