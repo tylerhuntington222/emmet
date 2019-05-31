@@ -1,5 +1,4 @@
 from maggma.builders import MapBuilder
-
 from monty.json import MontyDecoder
 from crystal_toolkit.components.structure import StructureMoleculeComponent
 
@@ -87,10 +86,10 @@ class VisualizationBuilder(MapBuilder):
             **kwargs
         )
 
-    def _get_graph_scene_legend(self, item):
+    def _get_scene_and_legend(self, item):
         """
-        Helper function for `calc()` method to get the
-        graph, scene andlegend objects for a given structure or
+        Private helper method for `calc()` to generate the
+        scene and legend objects for a given structure or
         molecule.
 
         Args:
@@ -100,7 +99,7 @@ class VisualizationBuilder(MapBuilder):
 
         Returns:
         ___
-            Tuple of the form (graph, scene, legend) for the item
+            Tuple of the form (scene, legend) for the item
             passed by caller.
         """
 
@@ -108,7 +107,6 @@ class VisualizationBuilder(MapBuilder):
             item[self.projected_object_name]
         )
 
-        # TODO: will combine these two functions into something more intuitive
 
         graph = StructureMoleculeComponent._preprocess_input_to_graph(
             struct_or_mol,
@@ -128,12 +126,12 @@ class VisualizationBuilder(MapBuilder):
             hide_incomplete_bonds=self.settings["hide_incomplete_bonds"],
         )
 
-        return graph, scene, legend
+        return scene, legend
 
 
     def calc(self, item):
 
-        graph, scene, legend = self._get_graph_scene_legend(item)
+        scene, legend = self._get_scene_and_legend(item)
 
         return {
             "scene": scene.to_json(),
