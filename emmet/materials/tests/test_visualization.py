@@ -30,7 +30,15 @@ class TestVisualizationBuilder(unittest.TestCase):
 
         crit = {'task_id': 'mp-779001'}
         doc = list(self.visualization.query(criteria=crit))[0]
-        print(doc)
+
+        print('SCENE')
+        print(doc['scene'])
+        print('LEGEND')
+        print(doc['legend'])
+        print('SOURCE')
+        print(doc['legend'])
+        print('NUM MATERIALS')
+
 
         self.assertTrue('scene' in doc)
         self.assertTrue('legend' in doc)

@@ -87,7 +87,23 @@ class VisualizationBuilder(MapBuilder):
             **kwargs
         )
 
-    def _calc_helper(self, item):
+    def _get_graph_scene_legend(self, item):
+        """
+        Helper function for `calc()` method to get the
+        graph, scene andlegend objects for a given structure or
+        molecule.
+
+        Args:
+        ---
+            item (dict): Structure or molecule document for which graph, scene
+            and legend should be returned.
+
+        Returns:
+        ___
+            Tuple of the form (graph, scene, legend) for the item
+            passed by caller.
+        """
+
         struct_or_mol = MontyDecoder().process_decoded(
             item[self.projected_object_name]
         )
@@ -117,8 +133,8 @@ class VisualizationBuilder(MapBuilder):
 
     def calc(self, item):
 
-        graph, scene, legend = self._calc_helper(item)
-        
+        graph, scene, legend = self._get_graph_scene_legend(item)
+
         return {
             "scene": scene.to_json(),
             "legend": legend,
