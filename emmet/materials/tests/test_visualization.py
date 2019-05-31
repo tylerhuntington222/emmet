@@ -4,9 +4,6 @@ import unittest
 from maggma.stores import Store, JSONStore, MemoryStore
 from maggma.runner import Runner
 from emmet.materials.visualization import VisualizationBuilder
-from crystal_toolkit.components.structure import StructureMoleculeComponent
-from crystal_toolkit.components.structure import MoleculeGraph
-from crystal_toolkit.helpers.scene import Scene
 
 __author__ = "Tyler Huntington"
 __email__ = "tylerhuntington222@lbl.gov"
